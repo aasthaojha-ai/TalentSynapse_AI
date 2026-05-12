@@ -23,8 +23,8 @@ A professional, Streamlit-based web application designed to analyze resumes, ext
 
 1. **Clone the repository:**
    ```bash
-   git clone <your-repo-url>
-   cd "Resume Analyzer"
+   git clone https://github.com/aasthaojha-ai/TalentSynapse_AI
+   cd TalentSynapse_AI
    ```
 
 2. **Set up a virtual environment (optional):**
