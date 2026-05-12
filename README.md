@@ -1,95 +1,59 @@
-# TalentSynapse AI
+# AI Resume Analyzer & ATS Optimizer
 
-An intelligent, Streamlit-based web application that analyzes resumes, extracts key information (skills, experience, etc.), and evaluates their compatibility against job descriptions.
+A professional, Streamlit-based web application designed to analyze resumes, extract key technical skills, and evaluate ATS compatibility against job descriptions. This tool provides actionable feedback and personalized recommendations to help job seekers optimize their profiles.
 
-## Features
+## 🚀 Features
 
-*   **Resume Parsing:** Automatically extracts text and relevant entities from uploaded resumes.
-*   **Skills Extraction & Similarity Scoring:** Uses advanced preprocessing and NLP similarity metrics to evaluate the match between the applicant's profile and the job requirements.
-*   **Job Recommendation:** Recommends relevant job categories/roles based on the extracted profile.
-*   **Interactive Dashboard:** A premium, modern web interface built with Streamlit and custom CSS.
+- **ATS Compatibility Scoring:** Uses TF-IDF and Cosine Similarity to calculate a match percentage between your resume and the job description.
+- **Skill Gap Analysis:** Automatically identifies technical skills present in your resume and highlights missing ones required for the role.
+- **AI-Powered Recommendations:** Generates personalized suggestions for improving your resume based on detected gaps.
+- **Interactive Dashboard:** A modern, premium UI with real-time visualizations and a responsive layout.
+- **PDF Extraction:** Seamlessly extracts text from PDF resumes for analysis.
 
-## File Structure
+## 📂 Project Structure
 
-*   `app.py`: Main Streamlit application file containing the UI and dashboard logic.
-*   `resume_parser.py`: Logic for extracting text and structure from resume files.
-*   `preprocessing.py`: Text cleaning and tokenization.
-*   `similarity.py`: Calculates ATS compatibility and text similarity scores.
-*   `recommender.py`: Handles job role recommendations based on resume content.
-*   `requirements.txt`: Python dependencies required for the project.
+- `app.py`: The main entry point for the Streamlit dashboard and UI logic.
+- `preprocessing.py`: Handles text cleaning, tokenization, and skill extraction.
+- `similarity.py`: Contains the logic for vectorization and similarity calculations.
+- `recommender.py`: Provides the recommendation engine for skill improvement.
+- `resume_parser.py`: Utility for extracting text from PDF files.
+- `requirements.txt`: List of Python dependencies.
 
-## Installation and Setup
+## 🛠️ Installation & Setup
 
-1.  **Clone the repository** (or download the source code).
-    ```bash
-    git clone <your-repository-url>
-    cd "Resume Analyzer"
-    ```
+1. **Clone the repository:**
+   ```bash
+   git clone <your-repo-url>
+   cd "Resume Analyzer"
+   ```
 
-2.  **Create a virtual environment (optional but recommended)**
-    ```bash
-    python -m venv venv
-    venv\Scripts\activate  # On Windows
-    # source venv/bin/activate  # On macOS/Linux
-    ```
+2. **Set up a virtual environment (optional):**
+   ```bash
+   python -m venv venv
+   # On Windows:
+   venv\Scripts\activate
+   # On macOS/Linux:
+   source venv/bin/activate
+   ```
 
-3.  **Install Dependencies**
-    ```bash
-    pip install -r requirements.txt
-    ```
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-4.  **Run the Application**
-    ```bash
-    streamlit run app.py
-    ```
+4. **Run the app:**
+   ```bash
+   streamlit run app.py
+   ```
 
-## Usage
+## 📊 Deployment on Streamlit Cloud
 
-1. Open the local link provided by Streamlit in your web browser.
-2. Upload a resume (PDF or DOCX format).
-3. View the analysis, extracted skills, and compatibility scores directly on the dashboard.
+To deploy this app on Streamlit Cloud:
+1. Push this code to a new GitHub repository.
+2. Connect your GitHub account to [Streamlit Cloud](https://share.streamlit.io/).
+3. Select your repository and the `app.py` file as the main entry point.
+4. The app will automatically handle NLTK data downloads on the first run.
 
-## 📊 Performance Metrics (Estimated)
+## 🛡️ License
 
-| Metric | Estimated Accuracy |
-| :--- | :--- |
-| Resume Text Extraction | 92–96% |
-| Skill Detection Accuracy | 85–92% |
-| Job Compatibility Precision | 80–90% |
-| ATS Score Reliability | 85–90% |
-| Missing Skill Identification | 88–94% |
-| Candidate Ranking Efficiency | +65% faster than manual screening |
-
-## 🏢 Industry Applications
-
-**HR Tech:**
-* Applicant Tracking Systems (ATS)
-* Automated resume screening
-* Candidate ranking
-* Recruiter workflow optimization
-
-**Career Platforms:**
-* Resume optimization tools
-* Job recommendation engines
-* Candidate career acceleration platforms
-
-**Enterprise Recruiting:**
-* Bulk applicant filtering
-* Internal hiring analytics
-* Talent intelligence dashboards
-
-## 📈 Future Industry-Level Scaling Opportunities
-
-1. **Advanced NLP Upgrade:**
-   * **Add:** spaCy, Sentence Transformers, BERT semantic matching
-   * **Result:** Compatibility accuracy improves to 90–96%
-2. **Recruiter Dashboard:**
-   * Bulk resume ranking, candidate comparison matrix, and hiring pipeline analytics.
-3. **AI Resume Rewriter:**
-   * ATS keyword enhancement, resume bullet optimization, and role-specific tailoring.
-4. **Cover Letter Generator:**
-   * Automated personalized cover letters based on profile and JD.
-5. **Cloud Deployment:**
-   * AWS / Azure / GCP, PostgreSQL, Docker, and CI/CD pipelines.
-6. **Security Enhancements:**
-   * JWT authentication, user profiles, secure resume storage, and API scalability.
+This project is open-source and available under the [MIT License](LICENSE).

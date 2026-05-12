@@ -3,20 +3,25 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
-# Ensure necessary NLTK data is available (already downloaded in step 1, but good practice)
-try:
-    nltk.data.find('tokenizers/punkt')
-    nltk.data.find('tokenizers/punkt_tab')
-    nltk.data.find('corpora/stopwords')
-except LookupError:
-    nltk.download('punkt')
-    nltk.download('punkt_tab')
-    nltk.download('stopwords')
+# Robust NLTK data initialization for Streamlit Cloud
+def initialize_nltk():
+    """Ensures required NLTK resources are available."""
+    resources = ['punkt', 'punkt_tab', 'stopwords']
+    for res in resources:
+        try:
+            if res == 'stopwords':
+                nltk.data.find('corpora/stopwords')
+            elif 'punkt' in res:
+                nltk.data.find('tokenizers/punkt')
+        except LookupError:
+            nltk.download(res)
+
+# Run initialization once on import
+initialize_nltk()
 
 def clean_text(text):
     """
-    Cleans the input text by performing lowercase conversion, punctuation removal,
-    tokenization, and stopword removal.
+    Cleans the input text: lowercase, removes punctuation, tokenizes, and removes stopwords.
     """
     if not text:
         return ""
@@ -28,13 +33,20 @@ def clean_text(text):
     text = re.sub(r'[^\w\s]', ' ', text)
     
     # 3. Tokenization
-    tokens = word_tokenize(text)
+    try:
+        tokens = word_tokenize(text)
+    except Exception:
+        # Fallback if word_tokenize fails for any reason
+        tokens = text.split()
     
     # 4. Stopword removal
-    stop_words = set(stopwords.words('english'))
+    try:
+        stop_words = set(stopwords.words('english'))
+    except Exception:
+        stop_words = set()
+        
     cleaned_tokens = [word for word in tokens if word not in stop_words and word.strip()]
     
-    # Return as a structured space-separated string
     return " ".join(cleaned_tokens)
 
 # Predefined skill database
@@ -56,10 +68,8 @@ def extract_skills(text):
     detected_skills = []
     
     for skill in SKILL_DATABASE:
-        # Escape the skill to handle special characters like +, #, .
         escaped_skill = re.escape(skill)
-        # Use lookarounds to ensure we match whole words only 
-        # (prevents matching 'java' inside 'javascript')
+        # Use lookarounds to ensure whole word matches
         pattern = r'(?<!\w)' + escaped_skill + r'(?!\w)'
         
         if re.search(pattern, text):
